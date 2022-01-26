@@ -5,9 +5,9 @@ using Xamarin.Forms;
 
 namespace BMIapp1._0.ViewModels
 {
-    public class AboutViewModel : BaseViewModel
+    public class MainPageViewModel : BaseViewModel
     {
-        public AboutViewModel()
+        public MainPageViewModel()
         {
             Title = "About";
             OpenWebCommand = new Command(async () => await Browser.OpenAsync("https://aka.ms/xamarin-quickstart"));
