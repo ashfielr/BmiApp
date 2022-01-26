@@ -17,12 +17,12 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="10*" />
-            <RowDefinition Height="40*" />
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="20*" />
             <RowDefinition Height="60*" />
         </Grid.RowDefinitions>
         <StackLayout Grid.Row="0" BackgroundColor="AliceBlue"  VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
-            <Label Text="Welcome to BMI App" Margin="00025"  FontSize="Title" VerticalOptions="End" HorizontalOptions="Center" TextColor="{StaticResource Primary}"></Label>
+            <Label Text="Welcome to the BMI app" FontSize="Title" VerticalOptions="EndAndExpand" HorizontalOptions="Center" TextColor="{StaticResource Primary}"></Label>
         </StackLayout>
         <StackLayout Grid.Row="1" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
             <Label HorizontalOptions="Center" Text="Please specify your weight" />
