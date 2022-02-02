@@ -1,8 +1,8 @@
-﻿using BMIapp1._0.Services;
-using BMIapp1._0.Views;
+﻿using BMIapp1._0.Views;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using BMIapp1._0.Navigation;
 
 namespace BMIapp1._0
 {
@@ -12,9 +12,8 @@ namespace BMIapp1._0
         public App()
         {
             InitializeComponent();
-
-            DependencyService.Register<MockDataStore>();
-            MainPage = new MainPage();
+            MainPage = new NavigationPage(new MainPage());  // Navigation page provides us with navigation stack
+            NavigationDispatcher.Instance.Initialise(MainPage.Navigation);
         }
 
         protected override void OnStart()

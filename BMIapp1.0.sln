@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BMIapp1.0.Android", "BMIapp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BMIapp1.0.iOS", "BMIapp1.0\BMIapp1.0.iOS\BMIapp1.0.iOS.csproj", "{9D8587ED-7A25-4605-BB9B-07151C7C17DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BMIapp1.0", "BMIapp1.0\BMIapp1.0\BMIapp1.0.csproj", "{D3D2CEE3-AA5D-4919-90E7-D0BE3FA9DBE2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BMIapp1.0", "BMIapp1.0\BMIapp1.0\BMIapp1.0.csproj", "{D3D2CEE3-AA5D-4919-90E7-D0BE3FA9DBE2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

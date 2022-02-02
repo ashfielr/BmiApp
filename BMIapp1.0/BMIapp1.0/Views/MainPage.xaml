@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BMIapp1._0.Views.MainPage"
              xmlns:vm="clr-namespace:BMIapp1._0.ViewModels"
+             xmlns:converters="clr-namespace:BMIapp1._0.Converters"
              Title="{Binding Title}">
     
     <ContentPage.BindingContext>
@@ -12,13 +13,14 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <Color x:Key="Accent">#96d1ff</Color>
+            <converters:DoubleToColourConveter x:Key="DoubleToColourConveter" />
         </ResourceDictionary>
     </ContentPage.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="5*" />
-            <RowDefinition Height="20*" />
+            <RowDefinition Height="30*" />
             <RowDefinition Height="60*" />
         </Grid.RowDefinitions>
         <StackLayout Grid.Row="0" BackgroundColor="AliceBlue"  VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
@@ -27,19 +29,20 @@
         <StackLayout Grid.Row="1" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
             <Label HorizontalOptions="Center" Text="Please specify your weight" />
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                <Entry Placeholder="Weight" Text="{Binding Weight, Mode=OneWayToSource}"></Entry>
+                <Entry Placeholder="Weight" Text="{Binding Weight, Mode=TwoWay}"></Entry>
                 <Label Text="Kg" VerticalOptions="Center" />
             </StackLayout>
             <Label HorizontalOptions="Center" Text="Please specify your height" />
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                <Entry Placeholder="Height" Text="{Binding Height, Mode=OneWayToSource}"></Entry>
+                <Entry Placeholder="Height" Text="{Binding Height, Mode=TwoWay}"></Entry>
                 <Label Text="Cm" VerticalOptions="Center" />
             </StackLayout>
+            <Button Text="Navigate to the next page" Command="{Binding NavigateToNextPageCommand}" />
         </StackLayout>
         <StackLayout Grid.Row="2" VerticalOptions="FillAndExpand" HorizontalOptions="CenterAndExpand">
             <Button Margin="0,10,0,0" Text="Calculate BMI"
                         BackgroundColor="{StaticResource Primary}"
-                        TextColor="White" Clicked="Button_Clicked"/>
+                        TextColor="White" Command="{Binding CalculateBMICommand}"/>
 
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                 <Label Text="Weight entered:" VerticalOptions="Center" />
@@ -53,30 +56,9 @@
 
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                 <Label Text="BMI Calculated:" VerticalOptions="Center" />
-                <Label Text="{Binding BMI, Mode=OneWay}" VerticalOptions="Center" />
+                <Label Text="{Binding BMI, Mode=OneWay}" TextColor="{Binding BMI, Converter={StaticResource DoubleToColourConveter}}" VerticalOptions="Center" />
             </StackLayout>
         </StackLayout>
-        <!--      
-        <ScrollView Grid.Row="1">
-            <StackLayout Orientation="Vertical" Padding="30,24,30,24" Spacing="10">
-                <Label Text="Start developing now" FontSize="Title"/>
-                <Label Text="Make changes to your XAML file and save to see your UI update in the running app with XAML Hot Reload. Give it a try!" FontSize="16" Padding="0,0,0,0"/>
-                <Label FontSize="16" Padding="0,24,0,0">
-                    <Label.FormattedText>
-                        <FormattedString>
-                            <FormattedString.Spans>
-                                <Span Text="Learn more at "/>
-                                <Span Text="https://aka.ms/xamarin-quickstart" FontAttributes="Bold"/>
-                            </FormattedString.Spans>
-                        </FormattedString>
-                    </Label.FormattedText>
-                </Label>
-                <Button Margin="0,10,0,0" Text="Learn more"
-                        Command="{Binding OpenWebCommand}"
-                        BackgroundColor="{StaticResource Primary}"
-                        TextColor="White" />
-            </StackLayout>
-        </ScrollView> -->
     </Grid>
 
 </ContentPage>

@@ -88,7 +88,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BMIapp1.0\BMIapp1.0.csproj">
-      <Project>{29FE2894-D96D-4034-A0FB-3F2962437654}</Project>
+      <Project>{D3D2CEE3-AA5D-4919-90E7-D0BE3FA9DBE2}</Project>
       <Name>BMIapp1.0</Name>
     </ProjectReference>
   </ItemGroup>

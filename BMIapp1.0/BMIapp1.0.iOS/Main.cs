@@ -5,7 +5,7 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
-namespace BMIapp1._0.iOS
+namespace BMIapp1._0._0.iOS
 {
     public class Application
     {

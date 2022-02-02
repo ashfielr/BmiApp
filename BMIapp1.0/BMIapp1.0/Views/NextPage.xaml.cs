@@ -5,13 +5,11 @@ using Xamarin.Forms.Xaml;
 
 namespace BMIapp1._0.Views
 {
-    public partial class MainPage : ContentPage
+    public partial class NextPage : ContentPage
     {
-        
-        public MainPage()
+        public NextPage()
         {
             InitializeComponent();
         }
-
     }
 }
