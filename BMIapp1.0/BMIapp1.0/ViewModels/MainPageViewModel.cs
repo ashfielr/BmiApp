@@ -54,8 +54,14 @@ namespace BMIapp1._0.ViewModels
                 {
                     bmi = value;
                     OnPropertyChanged(nameof(BMI));
+                    SaveBmiCommand.ChangeCanExecute();
                 }
             }
+        }
+
+        private bool ValidBmiCalculated()
+        {
+            return BMI != 0;
         }
 
         public MainPageViewModel()
@@ -71,7 +77,10 @@ namespace BMIapp1._0.ViewModels
 
             NavigateToNextPageCommand = new Command(NavigateToNextPage);  // Dont want a CanExecute so just pass action
 
-            SaveBmiCommand = new Command(SaveBmi);
+            SaveBmiCommand = new Command(SaveBmi, () =>
+            {
+                return ValidBmiCalculated();
+            });
 
             ViewHistoryPageCommand = new Command(ViewHistoryPage);
         }
