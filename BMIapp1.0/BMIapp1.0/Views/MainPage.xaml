@@ -58,6 +58,11 @@
                 <Label Text="BMI Calculated:" VerticalOptions="Center" />
                 <Label Text="{Binding BMI, Mode=OneWay}" TextColor="{Binding BMI, Converter={StaticResource DoubleToColourConveter}}" VerticalOptions="Center" />
             </StackLayout>
+            
+            <Button Text="Save" Command="{Binding SaveBmiCommand}"/>
+
+            <Button Text="View History" Command="{Binding ViewHistoryPageCommand}" />
+
         </StackLayout>
     </Grid>
 
