@@ -13,18 +13,18 @@ namespace BMIapp1._0.ViewModels
 {
     public class MainPageViewModel :  BaseViewModel
     {
-        private double height;
-        private double weight;
-        private double bmi;
+        private double _height;
+        private double _width;
+        private BmiCalculation _bmiCalculation;
 
         public double Height
         {
-            get => height;
+            get => _height;
             set
             {
-                if (value != height)
+                if (value != _height)
                 {
-                    height = value;
+                    _height = value;
                     CalculateBMICommand.ChangeCanExecute();
                     OnPropertyChanged(nameof(Height));
                 }
@@ -33,12 +33,12 @@ namespace BMIapp1._0.ViewModels
 
         public double Weight
         {
-            get => weight;
+            get => _width;
             set
             {
-                if (value != weight)
+                if (value != _width)
                 {
-                    weight = value;
+                    _width = value;
                     CalculateBMICommand.ChangeCanExecute();
                     OnPropertyChanged(nameof(Weight));
                 }
@@ -47,25 +47,22 @@ namespace BMIapp1._0.ViewModels
 
         public double BMI
         {
-            get => bmi;
-            set
+            get
             {
-                if (value != bmi)
-                {
-                    bmi = value;
-                    OnPropertyChanged(nameof(BMI));
-                    SaveBmiCommand.ChangeCanExecute();
-                }
+                if (_bmiCalculation == null)
+                    return 0.0;
+                else
+                    return _bmiCalculation.BMI;
             }
         }
 
         private bool ValidBmiCalculated()
         {
-            return BMI != 0;
+            return _bmiCalculation != null;
         }
 
         public MainPageViewModel()
-        {
+        { 
             ObservableCollection<string> savedBMIsCollection = new ObservableCollection<string>();
             SavedBMIs.Instance.Initialise(savedBMIsCollection);
                                                     // Action, Func<Bool>
@@ -91,17 +88,24 @@ namespace BMIapp1._0.ViewModels
         }
 
         public Command CalculateBMICommand { get; set; }
-        public Command NavigateToNextPageCommand { get; set; }
+        public ICommand NavigateToNextPageCommand { get; set; }
         public Command SaveBmiCommand { get; set; }
 
         public Command ViewHistoryPageCommand { get; set; }
 
+        /// <summary>
+        /// Creates a new BMI calculation object with the Height and Weight
+        /// </summary>
         public void CalculateBmi()
         {
-            double heightMeters = Height / 100;
-            BMI = Math.Round(Weight / (heightMeters * heightMeters),2);
+            _bmiCalculation = new BmiCalculation(Height, Weight);
+            OnPropertyChanged(nameof(BMI));
+            SaveBmiCommand.ChangeCanExecute();
         }
 
+        /// <summary>
+        /// Adds a NextPage content page to the navigation stack
+        /// </summary>
         public void NavigateToNextPage()
         {
             // navigation goes here
@@ -109,13 +113,19 @@ namespace BMIapp1._0.ViewModels
             NavigationDispatcher.Instance.Navigation.PushAsync(nextPage);
         }
 
+        /// <summary>
+        /// Saves the current BMI calculation
+        /// </summary>
         public void SaveBmi()
         {
-            string bmiString = $"{BMI.ToString()} {DateTime.Now.ToString()}";
+            string bmiString = _bmiCalculation.ToString();
             SavedBMIs.Instance.Add(bmiString);
             OnPropertyChanged(nameof(SavedBMIsCollection));
         }
 
+        /// <summary>
+        /// Adds HistoryPage to navigation stack as modal
+        /// </summary>
         public void ViewHistoryPage()
         {
             var historyPage = new HistoryPage();
